@@ -1,16 +1,16 @@
-const { Client } = require('discord.js-selfbot-v13');
+const { Client } = require("discord.js-selfbot-v13");
 const { joinVoiceChannel } = require("@discordjs/voice");
 const client = new Client({ checkUpdate: false });
 
 const config = require(`${process.cwd()}/config.json`);
 
-client.on('ready', async () => {
+client.on("ready", async () => {
     console.log(`Đăng nhập vào ${client.user.tag}!`);
 
     await joinVC(client, config);
 });
 
-client.on('voiceStateUpdate', async (oldState, newState) => {
+client.on("voiceStateUpdate", async (oldState, newState) => {
     const oldVoice = oldState.channelId;
     const newVoice = newState.channelId;
 
@@ -38,6 +38,7 @@ async function joinVC(client, config) {
         guildId: guild.id,
         adapterCreator: guild.voiceAdapterCreator,
         selfDeaf: false,
-        selfMute: true
+        selfMute: true,
+        selfVideo: true,
     });
 }
